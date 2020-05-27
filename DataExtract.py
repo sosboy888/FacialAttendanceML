@@ -12,6 +12,7 @@ import joblib
 def trainFaces(dir):
     encodings=[]
     ids=[]
+    count=0
     if(dir[-1]!="/"):
         dir+="/"
     trainingDir=os.listdir(dir)
@@ -26,8 +27,10 @@ def trainFaces(dir):
                 ids.append(id)
             else:
                 print(id+"/"+picture+" cannot be used for training.")
+        count=count+1
     classifier=svm.SVC(gamma='scale')
     classifier.fit(encodings,ids)
     joblib.dump(classifier,"trainedData.sos")
+    joblib.dump(count,"count.sos")
     print("Classifier Trained and Saved")
 trainFaces("G:\myLab\pythonProjs\FaceAttendanceCNN\DataSet")
