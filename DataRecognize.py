@@ -33,3 +33,4 @@ class Recognizer:
         cv2.imshow("Faces",image)
         cv2.waitKey(0)
         cv2.destroyWindow("Faces")
+Recognizer().faceRecognize("1.png")

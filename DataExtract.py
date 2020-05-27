@@ -30,4 +30,3 @@ def trainFaces(dir):
     classifier.fit(encodings,ids)
     joblib.dump(classifier,"trainedData.sos")
     print("Classifier Trained and Saved")
-trainFaces("G:\myLab/pythonProjs/FaceAttendanceCNN/DataSet")
