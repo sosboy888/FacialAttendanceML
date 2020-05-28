@@ -28,7 +28,7 @@ def trainFaces(dir):
             else:
                 print(id+"/"+picture+" cannot be used for training.")
         count=count+1
-    classifier=svm.SVC(gamma='scale')
+    classifier=svm.SVC(gamma='scale',probability=True)
     classifier.fit(encodings,ids)
     joblib.dump(classifier,"trainedData.sos")
     joblib.dump(count,"count.sos")
