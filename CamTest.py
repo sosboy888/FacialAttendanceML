@@ -2,7 +2,7 @@
 """
 Created on Wed May 27 12:43:54 2020
 
-@author: Intal
+@author: sosboy888
 """
 
 import cv2

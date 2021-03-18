@@ -1,9 +1,4 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Tue May 26 16:25:01 2020
 
-@author: sosboy888
-"""
 import face_recognition
 import docopt
 from sklearn import svm
@@ -28,9 +23,10 @@ def trainFaces(dir):
             else:
                 print(id+"/"+picture+" cannot be used for training.")
         count=count+1
-    classifier=svm.SVC(gamma='scale',probability=True)
+    classifier=svm.SVC(gamma="auto")
     classifier.fit(encodings,ids)
     joblib.dump(classifier,"trainedData.sos")
     joblib.dump(count,"count.sos")
     print("Classifier Trained and Saved")
+#The path to your dataset folder
 trainFaces("G:\myLab\pythonProjs\FaceAttendanceCNN\DataSet")

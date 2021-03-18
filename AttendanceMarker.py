@@ -14,6 +14,8 @@ class AttendanceMark:
         cursor=self.conn.execute("select Name from Students where id="+str(id))
         for row in cursor:
             print(row[0])
-        cursor=self.conn.execute("update presentee28 set presentee28='Present' where id="+str(id))
+        cursor=self.conn.execute("update presentee28 set presentee='Present' where id="+str(id))
         print("Presentee marked for "+str(id)+"!")
-        
+        self.conn.commit()
+    def destructor(self):
+        self.conn.close()

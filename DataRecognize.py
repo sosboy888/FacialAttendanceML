@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Tue May 26 16:58:01 2020
-
-@author: sosboy888
-"""
 
 import face_recognition
 import docopt
@@ -28,7 +22,7 @@ class Recognizer:
         number=len(faces)
         print("Number of faces detected="+str(number))
         for i in range(number):
-            imgEncoding=face_recognition.face_encodings(img)[i]
+            imgEncoding=face_recognition.face_encodings(img,model="small")[i]
             id=self.classifier.predict([imgEncoding])
             print(*id)
         cv2.imshow("Faces",image)
@@ -37,8 +31,7 @@ class Recognizer:
         return id
     def faceRecognizeLive(self,img):
         id=-1
-        image=cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
-        faces=face_recognition.face_locations(image)
+        faces=face_recognition.face_locations(img,model="cnn")
         top_lefts=[]
         bottom_rights=[]
         ids=[]
@@ -50,9 +43,9 @@ class Recognizer:
         number=len(faces)
         print("Number of faces detected="+str(number))
         for i in range(number):
-            imgEncoding=face_recognition.face_encodings(img)[i]
+            imgEncoding=face_recognition.face_encodings(img,known_face_locations=faces)[i]
             id=self.classifier.predict([imgEncoding])
             ids.append(*id)
             print(*id)
-            print(self.classifier.score([imgEncoding],[id])*100)
+            print("Accuracy score obtained:"+str(self.classifier.score([imgEncoding],[id])*100))
         return len(faces),top_lefts,bottom_rights,ids
