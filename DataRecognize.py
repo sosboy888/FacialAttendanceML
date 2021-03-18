@@ -42,8 +42,9 @@ class Recognizer:
             bottom_rights.append(bottom_right)
         number=len(faces)
         print("Number of faces detected="+str(number))
+        allEncodings=face_recognition.face_encodings(img,known_face_locations=faces)
         for i in range(number):
-            imgEncoding=face_recognition.face_encodings(img,known_face_locations=faces)[i]
+            imgEncoding=allEncodings[i]
             id=self.classifier.predict([imgEncoding])
             ids.append(*id)
             print(*id)

@@ -11,11 +11,11 @@ class AttendanceMark:
     def __init__(self):
         pass
     def markAttendance(self,id):
-        cursor=self.conn.execute("select Name from Students where id="+str(id))
-        for row in cursor:
-            print(row[0])
-        cursor=self.conn.execute("update presentee28 set presentee='Present' where id="+str(id))
+        self.conn.execute("update presentee28 set presentee='Present' where id="+str(id))
         print("Presentee marked for "+str(id)+"!")
         self.conn.commit()
+    def getName(self,id):
+        cursor=self.conn.execute("select Name from students where id="+str(id))
+        return cursor.fetchone()
     def destructor(self):
         self.conn.close()
