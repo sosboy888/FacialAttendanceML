@@ -28,7 +28,7 @@ while True:
         except TypeError:
             print("TYPEERROR OCCURING")
         except IndexError:
-            print("IndexError OCCURING")
+            print("INDEXERROR OCCURING")
     cv2.imshow("",img)
     if(cv2.waitKey(1)&0xFF==ord('q')):
         break
