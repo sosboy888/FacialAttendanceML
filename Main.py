@@ -10,7 +10,7 @@ attendance=AttendanceMarker.AttendanceMark()
 onlyOnce=[0 for x in range(count)]
 print(count)
 cam=cv2.VideoCapture(0)
-while True:
+def processImg():
     ret, img=cam.read()
     n,top_lefts,bottom_rights,ids=recognizer.faceRecognizeLive(img)
     for i in range(n):
@@ -29,9 +29,13 @@ while True:
             print("TYPEERROR OCCURING")
         except IndexError:
             print("INDEXERROR OCCURING")
-    cv2.imshow("",img)
-    if(cv2.waitKey(1)&0xFF==ord('q')):
-        break
-cam.release()
-cv2.destroyAllWindows()
-attendance.destructor()
+    scale_percent = 150
+    width = int(img.shape[1] * scale_percent / 100)
+    height = int(img.shape[0] * scale_percent / 100)
+    dim = (width, height)
+    resized = cv2.resize(img, dim, interpolation = cv2.INTER_NEAREST)
+    return resized
+def destroy():
+    cam.release()
+    cv2.destroyAllWindows()
+    attendance.destructor()

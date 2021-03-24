@@ -8,6 +8,7 @@ def trainFaces(dir):
     encodings=[]
     ids=[]
     count=0
+    imagesCount=joblib.load("imagesCount.sos")
     if(dir[-1]!="/"):
         dir+="/"
     trainingDir=os.listdir(dir)
@@ -27,6 +28,7 @@ def trainFaces(dir):
     classifier.fit(encodings,ids)
     joblib.dump(classifier,"trainedData.sos")
     joblib.dump(count,"count.sos")
+    joblib.dump(imagesCount,"imagesCount.sos")
     print("Classifier Trained and Saved")
 #The path to your dataset folder
 trainFaces("G:\myLab\pythonProjs\FaceAttendanceCNN\DataSet")
