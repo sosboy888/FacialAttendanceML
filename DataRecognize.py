@@ -48,5 +48,5 @@ class Recognizer:
             id=self.classifier.predict([imgEncoding])
             ids.append(*id)
             print(*id)
-            print("Accuracy score obtained:"+str(self.classifier.score([imgEncoding],[id])*100))
+            print("Confidence obtained:"+str(self.classifier.score([imgEncoding],[id])*100))
         return len(faces),top_lefts,bottom_rights,ids
